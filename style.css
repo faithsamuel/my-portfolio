@@ -1,0 +1,483 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 20px 40px;
+    /* border: 2px solid red; */
+    font-family: 'Arial', sans-serif;
+    /* line-height: 1.6; */
+}
+
+/* Reset list styles */
+.nav-links {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+/* Remove default link styles */
+.nav-links a {
+    text-decoration: none; /* Remove underline */
+    color: black; /* Adjust to your preferred color */
+    font-size: 1rem; /* Adjust size as needed */
+    font-weight: bold;
+    padding: 10px 15px;
+    display: block; /* Make it fill the li for better click area */
+}
+
+a:hover {
+    color: #0E9AA7;  /* Blue-green hover effect */
+}
+
+/* nav-bar styling */
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.burger{
+    display: none;
+}
+
+.line{
+    width: 30px;
+    height: 4px;
+    background-color: #000;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+@media(max-width: 768px) {
+
+    .nav-links {
+        display: flex; /* Align links horizontally */
+        gap: 20px; /* Space between links */
+    }
+
+    .nav-links li {
+        margin: 0;
+    }
+
+    .nav-links {
+        /* display: none; */
+        transform: translateX(100%);
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 60px; /* Adjust based on navbar height */
+        right: 0;
+        background: white;
+        width: 100%;
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+        /* Ensure it's above other elements */
+        z-index: 20; /* Slightly higher than the burger */
+    
+
+        
+        /* Hides it off-screen initially */
+        transform: translateX(100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    
+     /* When active, make menu visible */
+    .nav-active {
+        transform: translate(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .burger{
+        display: block;
+        cursor: pointer;
+        z-index: 30;
+    }
+    
+    .burger div {
+        width: 30px;
+        height: 4px;
+        background-color: black;
+        margin: 5px 0;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Burger animation */
+    .burger-active .line1 {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .burger-active .line2 {
+        opacity: 0;
+    }
+
+    .burger-active .line3 {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Banner Mobile view adjustments  */
+    .banner {
+        flex-direction: column; 
+        text-align: center;
+        position: relative;
+        align-items: center;
+    }
+
+    .learn {
+        position: absolute;
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Perfect centering */
+        font-size: 40px;
+        font-weight: bold;
+        color: white; /* Ensure visibility */
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Add some contrast */
+        z-index: 2; /* Keep it above the image */
+        width: 100%; /* Prevent text overflow */
+    }
+
+    .banner-imgs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .banner-imgs .img-2,
+     .banner-imgs .img-3 {
+        display: none;
+    }
+
+    .banner-imgs .img-1 {
+        width: 300px; /* Adjust for mobile */
+        height: auto;
+        position: relative;
+    }
+
+   
+}
+
+/* Navigation for screens larger than 768 */
+
+@media (min-width: 769px) {
+    /* Ensure nav links are horizontal */
+    .nav-links {
+        display: flex; 
+        align-items: center;
+        gap: 20px; /* Adjust spacing */
+        transform: translateX(0); /* Ensure it's visible */
+        position: static; /* Reset position */
+        background: none; /* Remove mobile background */
+        width: auto;
+        padding: 0;
+    }
+
+    /* Remove mobile-only styles */
+    .nav-links li {
+        margin: 0;
+    }
+
+    /* Hide the hamburger menu on larger screens */
+    .burger {
+        display: none;
+    }
+}
+
+/* Logo styling */
+
+.logo a {
+    font-size: 1.5rem;  /* Increase font size */
+    font-weight: bold;  /* Make it bold */
+    text-decoration: none;  /* Remove underline */
+    color: black;  /* Set a default color */
+}
+
+.logo a:hover {
+    color: #0E9AA7;  /* Change color on hover (optional) */
+}
+
+
+ /* end of nav-bar styling */
+
+ /* banner section */
+
+ .banner{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+ }
+
+ .learn{
+    width:250px;
+    font-size: 60px;
+    font-weight: bold;
+    padding-top: 150px;
+  
+    
+
+ }
+
+ .banner-imgs{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 450px;
+    
+ }
+
+ .banner-img{
+    width: 200px;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: width 0.3s ease-in-out;
+ }
+
+ /* Initially, make the first image larger */
+.banner-imgs .img-1 {
+    width: 400px;
+}
+
+/* On hover, the hovered image expands, others shrink */
+.banner-imgs:hover .banner-img {
+    width: 100px;
+}
+
+.banner-imgs .banner-img:hover {
+    width: 400px;
+}
+
+/* My Projects */
+
+.my-projects{
+    margin-top: 40px;
+}
+.my-projects h1 {
+    text-align: center;
+    font-size: 40px;
+}
+.cards{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+}
+
+.card img{
+    width: 280px;
+    height: 300px;
+    border-radius: 10px;
+    
+}
+
+ .card-2 img{
+    height:330px;
+}
+
+.card-3 img{
+    height:370px;
+}
+
+ .card .title{
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Skills Timeline section */
+
+/* My Skills Section */
+.my-skills {
+    display: flex;
+    gap: 20px; /* Space between timeline and image */
+    padding: 20px;
+    margin-top: 40px;
+  }
+  
+  /* Timeline (25% width) */
+  .timeline {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+  }
+  
+  /* Timeline Item */
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  /* Timeline Icon */
+  .timeline-icon {
+    font-size: 24px;
+    margin-right: 20px; /* Space between icon and line */
+    background: #fff;
+    z-index: 1; /* Ensure the icon is above the line */
+  }
+  
+  /* Vertical Line */
+  .timeline-line {
+    position: absolute;
+    left: 22px; /* Half of icon width + margin-right */
+    top: 24px; /* Start below the icon */
+    bottom: -20px; /* Extend to the next item */
+    width: 2px;
+    background: #ccc;
+    z-index: 0; /* Ensure the line is behind the icons */
+  }
+  
+  /* Timeline Content */
+  .timeline-content {
+    margin-left: 50px; /* Space between line and content */
+  }
+  
+  .timeline-content h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .timeline-content p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Image Section (75% width) */
+  .skills-right {
+    width: 75%;
+    position: relative;
+  }
+  
+  /* Image Container */
+  .skills-img-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Image Styling */
+  .skills-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Rounded corners */
+    display: block;
+  }
+  
+  /* Small Card on Image */
+  .skills-card {
+    position: absolute;
+    top: -20px; /* Adjust as needed */
+    left: 70%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    background-color: #0E9AA7;
+    height: 100px;
+    width: 350px;
+    padding: 30px;
+    border-radius: 5px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+  }
+
+  /* Mentors Section */
+.mentors {
+    padding: 20px;
+    background: #f9f9f9; /* Light background */
+    text-align: center;
+  }
+  
+  /* Mentor Cards Row */
+  .mentors-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between cards */
+    margin-bottom: 20px; /* Space between cards and arrows */
+  }
+  
+  /* Individual Mentor Card */
+  .mentor {
+    background: #fff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .mentor:hover {
+    transform: translateY(-5px); /* Lift card on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+  }
+  
+  /* Text in Mentor Card */
+  .mentor p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px; /* Space between text and avatar */
+  }
+  
+  /* Avatar Section */
+  .avatar {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between image and name */
+  }
+  
+  .avatar img {
+    width: 40px; /* Avatar size */
+    height: 40px;
+    border-radius: 50%; /* Circular avatar */
+    object-fit: cover; /* Ensure image fits */
+  }
+  
+  .avatar .name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Arrows for Navigation */
+  .mentors-arrows {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between arrows */
+  }
+  
+  .arrow {
+    width: 40px;
+    height: 40px;
+    background: #333; /* Dark background */
+    color: #fff; /* White text */
+    border-radius: 50%; /* Circular arrows */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .arrow:hover {
+    background: #555; /* Darker background on hover */
+  }
