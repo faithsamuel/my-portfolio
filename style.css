@@ -390,14 +390,14 @@ nav{
     top: -20px; /* Adjust as needed */
     left: 70%; /* Center horizontally */
     transform: translateX(-50%); /* Center horizontally */
-    background-color: #0E9AA7;
+    background-color: #555;
     height: 100px;
     width: 350px;
     padding: 30px;
     border-radius: 5px;
     font-size: 30px;
     font-weight: bold;
-    color: #333;
+    color: white;
     text-align: center;
   }
 
