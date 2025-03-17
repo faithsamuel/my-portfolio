@@ -163,6 +163,23 @@ nav{
         position: relative;
     }
 
+
+    .my-projects, .cards{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+
+    /* Mentors */
+
+    /* .mentors-arrows {
+      display: none;
+      
+    } */
+
+    
+
    
 }
 
