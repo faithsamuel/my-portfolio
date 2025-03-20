@@ -533,3 +533,7 @@ nav{
   .contact-details{
     margin: 20px;
   }
+
+  .contact-details h2, h3, p, .socials{
+    margin-bottom: 10px;
+  }
