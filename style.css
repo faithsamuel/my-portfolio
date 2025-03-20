@@ -508,3 +508,28 @@ nav{
   .arrow:hover {
     background: #555; /* Darker background on hover */
   }
+
+
+  /* Projects Page */
+
+  .my-projects-title {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .projects_buttons{
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .projects_buttons input{
+    margin: 10px;
+  }
+
+
+  /* COntact page */
+
+  .contact-details{
+    margin: 20px;
+  }
