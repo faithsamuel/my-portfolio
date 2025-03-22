@@ -28,26 +28,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     const allBtn = document.querySelector('input[value="All"]');
     const websitesBtn = document.querySelector('input[value="Websites"]');
     const appsBtn = document.querySelector('input[value="Applications"]');
+    const contactForm = document.querySelector(".contact-form");
 
     let projects = []; // Store fetched projects
 
-    try {
-        const response = await fetch("https://dummyjson.com/c/540e-43ea-4b65-921f");
-        const data = await response.json();
-        projects = data.projects; // Save projects
+    // ✅ Check if the projects section exists before fetching
+    if (projectsContainer) {
+        try {
+            const response = await fetch("https://dummyjson.com/c/540e-43ea-4b65-921f");
+            const data = await response.json();
+            projects = data.projects;
 
-        console.log("Fetched Projects:", projects.map(p => ({ title: p.title, category: p.category })));
-     // Debugging check
-
-        renderProjects(projects); // Initially display all projects
-    } catch (error) {
-        console.error("Error fetching projects:", error);
+            console.log("Fetched Projects:", projects.map(p => ({ title: p.title, category: p.category })));
+            renderProjects(projects); // Initially display all projects
+        } catch (error) {
+            console.error("Error fetching projects:", error);
+        }
     }
 
-    // Function to render projects
+    // ✅ Function to render projects safely
     function renderProjects(filteredProjects) {
-        projectsContainer.innerHTML = ""; // Clear existing tiles
+        if (!projectsContainer) return; // Avoid errors
 
+        projectsContainer.innerHTML = ""; // Clear existing tiles
         filteredProjects.forEach(project => {
             const projectTile = document.createElement("div");
             projectTile.classList.add("tile");
@@ -67,25 +70,74 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // Filter event listeners
-    allBtn.addEventListener("click", () => {
-        renderProjects(projects);
-    });
+    // ✅ Ensure filter buttons exist before adding event listeners
+    if (allBtn && websitesBtn && appsBtn) {
+        allBtn.addEventListener("click", () => renderProjects(projects));
 
+        websitesBtn.addEventListener("click", () => {
+            const filtered = projects.filter(project => project.category?.trim().toLowerCase() === "websites");
+            console.log("Filtered Websites:", filtered);
+            renderProjects(filtered);
+        });
 
-    websitesBtn.addEventListener("click", () => {
-        const filtered = projects.filter(project => project.category?.trim().toLowerCase() === "websites");
-        console.log("Filtered Websites:", filtered);
-        renderProjects(filtered);
-    });
-    
-    appsBtn.addEventListener("click", () => {
-        const filtered = projects.filter(project => project.category?.trim().toLowerCase() === "applications");
-        console.log("Filtered Applications:", filtered);
-        renderProjects(filtered);
-    });
-    
+        appsBtn.addEventListener("click", () => {
+            const filtered = projects.filter(project => project.category?.trim().toLowerCase() === "applications");
+            console.log("Filtered Applications:", filtered);
+            renderProjects(filtered);
+        });
+    }
 
+    // ✅ Ensure the contact form exists before adding an event listener
+    if (contactForm) {
+        contactForm.addEventListener("submit", (event) => {
+            event.preventDefault(); // Prevent page reload
+
+            // ✅ Select form inputs safely
+            const nameInput = document.querySelector("#name");
+            const emailInput = document.querySelector("#email");
+            const subjectInput = document.querySelector("#subject");
+            const messageInput = document.querySelector("#message");
+
+            if (!nameInput || !emailInput || !messageInput) {
+                console.error("One or more contact form fields are missing.");
+                return;
+            }
+
+            // Get form values
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const subject = subjectInput.value.trim();
+            const message = messageInput.value.trim();
+
+            if (!name || !email || !message) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            // Create message object
+            const contactData = {
+                name,
+                email,
+                subject,
+                message,
+                timestamp: new Date().toLocaleString(),
+            };
+
+            // Retrieve existing messages from Local Storage
+            const savedMessages = JSON.parse(localStorage.getItem("contactMessages")) || [];
+
+            // Add new message
+            savedMessages.push(contactData);
+
+            // Save back to Local Storage
+            localStorage.setItem("contactMessages", JSON.stringify(savedMessages));
+
+            alert("Message saved successfully!");
+            contactForm.reset();
+        });
+    } else {
+        console.warn("Contact form not found.");
+    }
 });
 
 
