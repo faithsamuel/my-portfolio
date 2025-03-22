@@ -550,6 +550,15 @@ nav{
 
 
 /* Projects Container */
+.projects-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: 20px; 
+  width: 100%; 
+}
+
+/* Projects Container */
 .tile {
   width: 90%; /* Responsive width */
   max-width: 600px; /* Maximum size */
