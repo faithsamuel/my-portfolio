@@ -29,7 +29,7 @@ body {
 }
 
 a:hover {
-    color: #0E9AA7;  /* Blue-green hover effect */
+    color: #007BFF;  /* Blue-green hover effect */
 }
 
 /* nav-bar styling */
@@ -417,7 +417,7 @@ nav{
     top: -20px; /* Adjust as needed */
     left: 70%; /* Center horizontally */
     transform: translateX(-50%); /* Center horizontally */
-    background-color: #555;
+    background-color: #007BFF;
     height: 100px;
     width: 350px;
     padding: 30px;
